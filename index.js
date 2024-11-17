@@ -48,6 +48,9 @@ import bodyParser from "body-parser";
 import TasksRouter from "./Routers/TasksRouter.js";
 import jwt from "jsonwebtoken";
 import connectDB from './database.js';
+import linkRoutes from './Routers/LinkRouter.js';
+import userRoutes from './Routers/UserRouter.js'
+
 
 
 
@@ -60,6 +63,10 @@ app.use(bodyParser.text());
 
 // הגדרת הניתוב הראשי של tasks 
 app.use('/tasks', TasksRouter);
+app.use('/api', linkRoutes);
+app.use('/api', userRoutes);
+
+
 
 const secret = "JIs%WCfS#Sl454d5FX";
 const token = jwt.sign({ userId: 1, roles: ["teacher"] }, secret);
