@@ -106,14 +106,19 @@ const UserController = {
     },
   
     delete: async (req, res) => {
-      const { id } = req.params;
-      try {
-        const deleted = await User.findByIdAndDelete(id);//מחיקה לפי מזהה
-        res.json(deleted);
-      } catch (e) {
-        res.status(400).json({ message: e.message });
-      }
-    },
+        try {
+            const userId = req.params.id;
+            const deletedUser = await User.findByIdAndDelete(userId);
+
+            if (!deletedUser) {
+                return res.status(404).send({ message: "User not found" });
+            }
+            res.status(200).send({ message: "User deleted successfully" });
+        } catch (error) {
+            res.status(500).send({ message: "Error deleting user", error });
+        }
+    }
+
   
     
   };

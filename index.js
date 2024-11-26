@@ -50,6 +50,8 @@ import jwt from "jsonwebtoken";
 import connectDB from './database.js';
 import linkRoutes from './Routers/LinkRouter.js';
 import userRoutes from './Routers/UserRouter.js'
+import trackingRoutes from "./Routers/TrackingRouter.js";
+import RedirectRouter from "./Routers/RedirectRouter.js";
 
 
 
@@ -65,6 +67,9 @@ app.use(bodyParser.text());
 app.use('/tasks', TasksRouter);
 app.use('/api', linkRoutes);
 app.use('/api', userRoutes);
+
+app.use("/api", trackingRoutes);
+app.use("/api", RedirectRouter);
 
 
 
